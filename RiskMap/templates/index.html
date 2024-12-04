@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Data</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Data</h1>
+    <form method="post">
+        Risk Category: <input type="text" name="risk_category" required><br>
+        Freq_lb: <input type="number" step="any" name="freq_lb" required><br>
+        Freq_ub: <input type="number" step="any" name="freq_ub" required><br>
+        Sev_lb: <input type="number" step="any" name="sev_lb" required><br>
+        Sev_ub: <input type="number" step="any" name="sev_ub" required><br>
+        <input type="submit" value="Add Line">
+    </form>
+
+    <h2>Current Data</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Risk Category</th>
+                <th>Freq_lb</th>
+                <th>Freq_ub</th>
+                <th>Sev_lb</th>
+                <th>Sev_ub</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for index, row in data.iterrows() %}
+            <tr>
+                <td>{{ row["Risk Category"] }}</td>
+                <td>{{ row["Freq_lb"] }}</td>
+                <td>{{ row["Freq_ub"] }}</td>
+                <td>{{ row["Sev_lb"] }}</td>
+                <td>{{ row["Sev_ub"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/generate_graph">Generate Graph</a>
+</body>
+</html>
